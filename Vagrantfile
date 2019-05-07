@@ -8,8 +8,7 @@ Vagrant.configure('2') do |config|
     config.ssh.forward_agent = true
     config.ssh.forward_x11 = true
     config.vm.define host[:name] do |node|
-	  node.vm.autostart:false
-      node.vm.box = host[:box]
+	  node.vm.box = host[:box]
       node.vm.hostname = host[:name]
       node.vm.provider :virtualbox do |vm|
         vm.memory = host[:mem]
