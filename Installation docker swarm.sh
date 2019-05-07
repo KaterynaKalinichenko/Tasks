@@ -1,6 +1,11 @@
-## Installation docker swarm   
-`sudo yum update -y`  
 #/bin/bash
+
+if [ "$(id -u)" != "0" ]; then
+   sudo bash "$0"
+   exit $?
+fi
+
+ yum update -y 
 #Can update the /etc/hosts file on each node  
 echo "172.16.29.7 swarmmaster  
 172.16.29.9  workernode1" > /etc/hosts  
@@ -8,7 +13,7 @@ echo "172.16.29.7 swarmmaster
 # Need to configure hostname on each node as per /etc/hosts file   
 hostnamectl set-hostname swarmmaster  
 hostnamectl set-hostname swarmslave 
-sudo yum install wget -y  
+yum install wget -y  
 
 # Install Docker Engine  
 wget https://download.docker.com/linux/centos/docker-ce.repo -O /etc/yum.repos.d/docker.repo  
@@ -29,7 +34,6 @@ firewall-cmd --permanent --add-port=80/tcp
 firewall-cmd --permanent --add-port=7946/udp  
 firewall-cmd --permanent --add-port=4789/udp
  
-
 # Reload the firewall  
 firewall-cmd --reload  
 
@@ -39,10 +43,8 @@ systemctl restart docker
 # This command will make your node as a manager node and advertising it’s IP  
 docker swarm init --advertise-addr 192.168.0.102  
 
-
 # Remember the token from the above output!  
 docker node ls  
 
- 
 # Launch a webserver service  
 docker service create -p 80:80 --name webservice --replicas 3 httpd  

@@ -1,19 +1,23 @@
 #!/bin/bash
 #Installation docker  
+if [ "$(id -u)" != "0" ]; then
+   sudo bash "$0"
+   exit $?
+fi
 
 # We can check updates  
-sudo yum check-update  
+yum check-update  
 curl -fsSL https://get.docker.com/ | sh  
 
 # Start docker  
-sudo systemctl start docker  
+ systemctl start docker  
 
 # Check status  
-sudo systemctl status docker  
-sudo systemctl enable docker  
+ systemctl status docker  
+ systemctl enable docker  
 
 # Add user to docker group to use docker command without sudo 
-sudo usermod -aG docker $(whoami)  
-sudo usermod -aG docker vagrant    
+ usermod -aG docker $(whoami)  
+ usermod -aG docker vagrant    
 
    
