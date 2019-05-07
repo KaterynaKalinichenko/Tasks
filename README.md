@@ -12,7 +12,7 @@
 
 ##### Check status  
 `sudo systemctl status docker`  
-
+![alt-текст](https://github.com/KaterynaKalinichenko/Tasks/blob/develop/images/status%20docker.JPG)
 `sudo systemctl enable docker`  
 
 ##### Add user to docker group to use docker command without sudo 
@@ -71,6 +71,7 @@
 `firewall-cmd --permanent --add-port=80/tcp`  
 `firewall-cmd --permanent --add-port=7946/udp`  
 `firewall-cmd --permanent --add-port=4789/udp`  
+![alt-текст](https://github.com/KaterynaKalinichenko/Tasks/blob/develop/images/firewall-cmd.JPG)
 ##### Reload the firewall  
 
 `firewall-cmd --reload`  
@@ -79,6 +80,7 @@
 `systemctl restart docker`  
 ##### This command will make your node as a manager node and advertising it’s IP  
 `docker swarm init --advertise-addr 192.168.0.102`  
+![alt-текст](https://github.com/KaterynaKalinichenko/Tasks/blob/develop/images/docker%20swarm%20init.JPG)
 ##### Remember the token from the above output!  
 `docker node ls`  
 ![alt-текст](https://github.com/KaterynaKalinichenko/Tasks/blob/develop/images/docker%20service%20ls.JPG)
